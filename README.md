@@ -4,7 +4,7 @@ A minimalist Single Page Application (SPA) designed to help users quickly discov
 ## Installation & Setup
 1. Clone the repository:
 ```git clone https://github.com/lxsxd1217/recipe-meal.git```
-```cd recipe-meal```
+```cd recipe-finder```
 2. Initialize your SQL relational database schema to support saved recipe queries.
 3. Serve ```blank.html``` through a local web server or open it directly in your browser.
 
