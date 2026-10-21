@@ -4,9 +4,10 @@ A minimalist Single Page Application (SPA) designed to help users quickly discov
 ## Installation & Setup
 1. Clone the repository:
 ```git clone https://github.com/lxsxd1217/recipe-meal.git```
+```mv recipe-meal recipe-finder```
 ```cd recipe-finder```
-2. Initialize your SQL relational database schema to support saved recipe queries.
-3. Serve ```blank.html``` through a local web server or open it directly in your browser.
+3. Initialize your SQL relational database schema to support saved recipe queries.
+4. Serve ```blank.html``` through a local web server or open it directly in your browser.
 
 ## Key Features
 - **Search-First Minimalist Interface**: Enter available ingredients or preferred cuisines directly into the search bar.
