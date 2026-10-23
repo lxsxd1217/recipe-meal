@@ -1,0 +1,177 @@
+:root {
+    --paper: rgb(236, 232, 220);
+    --ink: rgb(15, 23, 42);
+    --button: rgb(30, 58, 138);
+    --hover: rgb(219, 230, 245);
+    --focus: rgb(77, 127, 255);
+    --line: rgb(216, 211, 195);
+    --panel: rgb(241, 238, 226);
+    --head: rgb(248, 246, 238);
+    --radius: 5px;
+}
+*{box-sizing: border-box}
+[hidden] {display: none !important}
+body {
+    background-color: var(--paper);
+    color: var(--ink);
+    margin: 0px;
+    font: 16px;
+    font-family: Figtree, system-ui, sans-serif;
+    line-height: 1.5;
+}
+h1, h2, .brand { 
+    font-family: "Bricolage Grotesque", Georgia, serif;
+    line-height: 1.15;
+}
+h1 {
+    font-size: clamp(24px, 3vw, 33.6px);
+    margin: 7px 0px 20px;
+    letter-spacing: 1px;
+    text-align: center;
+}
+h2 {
+    font-size: 18.4px;
+}
+.brand {
+    color: var(--ink);
+    text-decoration: none;
+}
+:focus-visible {
+    outline: 3px solid var(--focus);
+}
+button, select, input {
+    font: inherit;
+    color: inherit;
+}
+button {
+    background-color: var(--button);
+    color: rgb(255, 255, 255);
+    border: 0px;
+    border-radius: var(--radius);
+    padding: 8.8px 17.6px;
+    font-weight: 600;
+}
+button.ghost{
+    background-color: transparent;
+    color: var(--button);
+    border: 2px solid var(--button);
+}
+button.ghost:hover {
+    background-color: var(--hover);
+}
+select {
+    background-color: rgb(255, 255, 255);
+    padding: 8px 11.2px;
+    border: 2px solid var(--ink);
+    border-radius: var(--radius);
+}
+.layout {
+    display: grid;
+    grid-template-columns: 1fr 250px;
+    gap: 19.2px;
+    padding: 19.2px;
+    align-items: start;
+}
+/* make the layout for About Us and Help page to only a single column */
+body:not([data-view=home]).layout {
+    grid-template-columns: 1fr
+}
+/* hide the Saved Recipe panel and the Saved button on the header */
+body:not([data-view=home]) #saved,body:not([data-view=home]) #savedToggle {
+    display: none
+}
+/* sidebar panel */
+.panel{
+    background-color: var(--panel);
+    border: 2px solid var(--ink);
+    border-radius: var(--radius);
+    overflow: hidden; 
+}
+/* heading panel */
+.phead {
+    background-color: var(--head);
+    display: flex;
+    align-items: center;
+    gap: 12.8px;
+    margin: 0px;
+    padding: 9.6px 17.6px;
+    border-bottom: 2px solid var(--ink);
+    font-size: 700 18.4px;
+    font-family: "Bricolage Grotesque", serif;
+    letter-spacing: 0.55px;
+}
+nav {
+    display: flex;
+    margin-left: auto;
+}
+nav a {
+    color: var(--ink);
+    text-decoration: none;
+    padding: 0px 14.4px;
+    border-left: 2px solid var(--ink);
+    font-size: 500 14.4px;
+    font-family: Figtree, sans-serif;
+    letter-spacing: 0px;
+}
+nav a[aria-current=page] {
+    color: var(--button);
+    font-weight: 700;
+    text-decoration: none;
+}
+/* body panel below heading panel*/
+.pbody {
+    padding: 22.4px;
+}
+#savedToggle {
+    display: none;
+    padding: 0px 12.8px;
+    height: 34px;
+    line-height: 1px;
+}
+#savedCount {
+    background-color: var(--focus);
+    color: rgb(255, 255, 255);
+    border-radius: 99px;
+    padding: 0px 8px;
+    margin-left: 4.8px;
+}
+.search {
+
+}
+.filter {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex: 1px;
+    align-items: center;
+    border: 2px solid var(--ink);
+    border-radius: 99px;
+    overflow: hidden;
+}
+.filter:focus-within {
+    outline: 3px solid var(--focus);
+}
+.filter button{
+    background-color: none;
+    color: var(--ink);
+    padding: 8px 12.8px;
+}
+.filter input {
+    background-color: none;
+    flex: 1px; 
+    min-width: 0px;
+    border: 0px;
+    padding: 8.8px 4.8px;
+    outline: 0px;
+}
+.filter select {
+    appearance: none;
+    background-color: rgb(255, 255, 255) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0h10L5 6z' fill='rgb(30,58,138)'/%3E%3C/svg%3E") no-repeat right 12.8px center;
+    border: 0px;
+    border-left: 2px solid var(--ink);
+    border-radius: 0px;
+    color: var(--button);
+    font-weight: 700;
+    font-size: 12.8px;
+    letter-spacing: 0.26px;
+    padding: 9.6px 32px 9.6px 14.4px;
+}
