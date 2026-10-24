@@ -1,7 +1,8 @@
+/* constant variable for styling */
 :root {
     --paper: rgb(236, 232, 220);
     --ink: rgb(15, 23, 42);
-    --button: rgb(30, 58, 138);
+    --accent: rgb(30, 58, 138);
     --hover: rgb(219, 230, 245);
     --focus: rgb(77, 127, 255);
     --line: rgb(216, 211, 195);
@@ -9,13 +10,17 @@
     --head: rgb(248, 246, 238);
     --radius: 5px;
 }
-*{box-sizing: border-box}
-[hidden] {display: none !important}
+* {
+    box-sizing: border-box;
+}
+[hidden] {
+    display: none !important;
+}
 body {
     background-color: var(--paper);
     color: var(--ink);
     margin: 0px;
-    font: 16px;
+    font-size: 16px;
     font-family: Figtree, system-ui, sans-serif;
     line-height: 1.5;
 }
@@ -36,6 +41,7 @@ h2 {
     color: var(--ink);
     text-decoration: none;
 }
+/* accessibilty focus (tab outline using keyboard) */
 :focus-visible {
     outline: 3px solid var(--focus);
 }
@@ -44,17 +50,17 @@ button, select, input {
     color: inherit;
 }
 button {
-    background-color: var(--button);
+    background-color: var(--accent);
     color: rgb(255, 255, 255);
     border: 0px;
     border-radius: var(--radius);
     padding: 8.8px 17.6px;
     font-weight: 600;
 }
-button.ghost{
+button.ghost {
     background: none;
-    color: var(--button);
-    border: 2px solid var(--button);
+    color: var(--accent);
+    border: 2px solid var(--accent);
 }
 button.ghost:hover {
     background-color: var(--hover);
@@ -65,6 +71,7 @@ select {
     border: 2px solid var(--ink);
     border-radius: var(--radius);
 }
+/* page layout */
 .layout {
     display: grid;
     grid-template-columns: 1fr 250px;
@@ -73,15 +80,15 @@ select {
     align-items: start;
 }
 /* make the layout for About Us and Help page to only a single column */
-body:not([data-view=home]).layout {
-    grid-template-columns: 1fr
+body:not([data-view=home]) .layout {
+    grid-template-columns: 1fr;
 }
-/* hide the Saved Recipe panel and the Saved button on the header */
-body:not([data-view=home]) #saved,body:not([data-view=home]) #savedToggle {
-    display: none
+/* hide the Saved Recipe panel and the saved button on the header */
+body:not([data-view=home]) #saved, body:not([data-view=home]) #savedToggle {
+    display: none;
 }
 /* sidebar panel */
-.panel{
+.panel {
     background-color: var(--panel);
     border: 2px solid var(--ink);
     border-radius: var(--radius);
@@ -94,12 +101,16 @@ body:not([data-view=home]) #saved,body:not([data-view=home]) #savedToggle {
     align-items: center;
     gap: 12.8px;
     margin: 0px;
+    height: 52px;
     padding: 9.6px 17.6px;
+    white-space: nowrap;
     border-bottom: 2px solid var(--ink);
-    font-size: 700 18.4px;
+    font-size: 18.4px;
+    font-weight: 700;
     font-family: "Bricolage Grotesque", serif;
     letter-spacing: 0.55px;
 }
+/* navigation */
 nav {
     display: flex;
     margin-left: auto;
@@ -109,24 +120,22 @@ nav a {
     text-decoration: none;
     padding: 0px 14.4px;
     border-left: 2px solid var(--ink);
-    font-size: 500 14.4px;
+    font-size: 14.4px;
+    font-weight: 500;
     font-family: Figtree, sans-serif;
     letter-spacing: 0px;
 }
 nav a[aria-current=page] {
-    color: var(--button);
+    color: var(--accent);
     font-weight: 700;
     text-decoration: none;
 }
-/* body panel below heading panel*/
-.pbody {
-    padding: 22.4px;
-}
+/* saved button */
 #savedToggle {
     display: none;
     padding: 0px 12.8px;
     height: 34px;
-    line-height: 1px;
+    line-height: 1;
 }
 #savedCount {
     background-color: var(--focus);
@@ -135,6 +144,87 @@ nav a[aria-current=page] {
     padding: 0px 8px;
     margin-left: 4.8px;
 }
+/* saved recipe popup window*/
+#saved {
+    position: sticky;
+    top: 19.2px;
+}
+#saved .phead {
+    position: relative;
+    justify-content: center;
+}
+#saved .phead h2 {
+    margin: 0px;
+    font: inherit;
+}
+/* exit button for the saved recipe popup window */
+#savedClose {
+    display: none;
+    top: 50%;
+    transform: translateY(-50%);
+}
+#savedList {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    display: grid;
+    gap: 12.8px;
+}
+#savedList li {
+    display: flex;
+    gap: 4.8px;
+    align-items: center;
+}
+/* recipe pop-up window open when click on the saved recipe in the list */
+#savedList .open {
+    all: unset;
+    cursor: pointer;
+    display: flex;
+    gap: 8.8px;
+    align-items: center;
+    flex: 1;
+    min-width: 0px;
+    font-weight: 700;
+    font-size: 12.8px;
+    line-height: 1.25;
+    letter-spacing: 0.26px;
+}
+/* accessibilty focus for saved recipe pop-up window */
+#savedList .open:focus-visible {
+    outline: 3px solid var(--focus);
+}
+/* caption for the saved recipe in the list */
+#savedList .open span {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+#savedList .open .tag {
+    background-color: rgb(206, 222, 243);
+    border: 1px solid var(--accent);
+    letter-spacing: 0px;
+    font-weight: 600;
+}
+#savedList img {
+    width: 50px;
+    height: 50px;
+    border-radius: 6px;
+    object-fit: cover;
+    flex: none;
+    border: 2px solid var(--ink);
+}
+/* delete button for each saved recipe in the list */
+#savedList .rm {
+    background: none;
+    color: var(--ink);
+    padding: 1.6px 8px;
+    font-size: 19.2px;
+}
+/* body panel below heading panel */
+.pbody {
+    padding: 22.4px;
+}
 .search {
     display: flex;
     align-items: center;
@@ -142,7 +232,8 @@ nav a[aria-current=page] {
     margin: 3.2px auto 0px;
     gap: 11.2px;
 }
-.filter {
+/* search bar */
+.search-bar {
     background-color: rgb(255, 255, 255);
     display: flex;
     flex: 1px;
@@ -151,31 +242,180 @@ nav a[aria-current=page] {
     border-radius: 99px;
     overflow: hidden;
 }
-.filter:focus-within {
+.search-bar:focus-within {
     outline: 3px solid var(--focus);
 }
-.filter button{
+.search-bar button {
     background: none;
     color: var(--ink);
     padding: 8px 12.8px;
 }
-.filter input {
+.search-bar input {
     background: none;
-    flex: 1px; 
+    flex: 1; 
     min-width: 0px;
     border: 0px;
     padding: 8.8px 4.8px;
     outline: 0px;
 }
-.filter select {
+/* search bar dropdown option */
+.search-bar select {
     appearance: none;
-    background-color: rgb(255, 255, 255) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0h10L5 6z' fill='rgb(30,58,138)'/%3E%3C/svg%3E") no-repeat right 12.8px center;
+    background-color: rgb(255, 255, 255);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0h10L5 6z' fill='rgb(30, 58, 138)'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12.8px center;
     border: 0px;
     border-left: 2px solid var(--ink);
     border-radius: 0px;
-    color: var(--button);
+    color: var(--accent);
     font-weight: 700;
     font-size: 12.8px;
     letter-spacing: 0.26px;
     padding: 9.6px 32px 9.6px 14.4px;
+}
+/* filter button */
+.round {
+    width: 43.2px;
+    height: 43.2px;
+    border-radius: 50%;
+    padding: 0px;
+    display: grid;
+    place-items: center;
+    flex: none;
+    background-color: rgb(255, 255, 255);
+    color: var(--accent);
+    border: 2px solid var(--accent);
+}
+.round:hover {
+    background-color: var(--hover);
+}
+/* filter menu */
+.filters {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: end;
+    max-width: 680px;
+    margin: 16px auto 0px;
+    padding: 16px;
+    background-color: rgb(255, 255, 255);
+    border: 2px solid var(--ink);
+    border-radius: var(--radius);
+}
+/* filter dropdown option */
+.filter label {
+    display: flex;
+    flex-direction: column;
+    gap: 3.2px;
+    font-weight: 500;
+}
+/* dietary filter */
+fieldset {
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    gap: 6.4px 16px;
+    flex-wrap: wrap;
+}
+/* name of each dietary */
+legend {
+    font-weight: 500;
+    margin-bottom: 4.8px;
+}
+.filter fieldset label {
+    flex-direction: row;
+    align-items: center;
+    gap: 6.4px;
+    font-weight: 400;
+}
+/* searching message */
+#status {
+    min-height: 24px;
+    margin: 16px 0px 8px;
+    text-align: center;
+}
+/* recipe card */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(200px, 1fr));
+    gap: 12.8px;
+}
+.card {
+    all: unset;
+    box-sizing: border-box;
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    border: 2px solid var(--ink);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform .12s;
+}
+.card:hover {
+    transform: translateY(-3px);
+}
+/* accessibilty focus for recipe card */
+.card:focus-visible {
+    outline: 3px solid var(--focus);
+}
+.card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    background-color: var(--line);
+}
+.card .cap {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 6px;
+    padding: 6px;
+    background-color:rgba(15, 23, 42, .82);
+    
+}
+.card h3{
+    flex: 1 1 auto;
+    min-width: 0px;
+    margin: 0px;
+    color: rgb(255,255,255);
+    font-size: 11.2px;
+    font-weight: 600;
+    line-height: 1.25;
+    text-align: left;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.card .tags{
+    justify-content:flex-end;
+    align-items: flex-end;
+    gap: 3px;
+    margin: 0px;
+    color: rgb(255, 255, 255);
+}
+.card .tag{
+    background: none;
+    border-color: rgb(255, 255, 255);
+    font-weight: 400;
+}
+.tags{
+    display: flex;
+    gap: 4.8px;
+    flex-wrap: wrap;
+    margin: 4.8px 0px;
+}
+.tag{
+    font-size: 11.2px;
+    background-color: rgb(206,222,243);
+    border: 1px solid  var(--accent);
+    border-radius: 99px;
+    padding: 0.32px 8px;
+    font-weight: 600;
 }
