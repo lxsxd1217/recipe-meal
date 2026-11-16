@@ -12,33 +12,42 @@ cd recipe-finder
 3. Serve `webpage.html` through a local web server (for example `python3 -m http.server`, then open `http://localhost:8000/webpage.html`) or open it directly in your browser.
 
 ## Key Features
-- **Search-First Minimalist Interface**: Enter available ingredients or preferred cuisines directly into the search bar.
+- **Search-First Minimalist Interface**: Search by ingredient (separate several with commas), cuisine, or dish name directly in the search bar.
 - **Filter Options**: Narrow down results using category and cuisine dropdowns and dietary filters (vegetarian, vegan, gluten-free, dairy-free, nut-free). Dietary tags are estimated from ingredient names, so check the ingredient list if you have allergies.
 - **Visual Meal Grid**: Displays matching recipe cards with thumbnails, titles, and concise tags.
-- **Interactive Detail Popup**: Click any recipe card to open a modal window containing full ingredient lists and step-by-step instructions. Click the X in the top-right corner of the popup to close it.
+- **Interactive Detail Popup**: Click any recipe card to open a popup window containing full ingredient lists and step-by-step instructions. Click the X in the top-right corner of the popup to close it.
 - **Saved Recipe Collection**: Save favorite recipes to a persistent sidebar collection backed by a database for easy retrieval.
-- **About & Help Views**: Integrated guides providing project background, mission details, and interactive system instructions.  
+- **About & Help Views**: Project background and mission, plus a Help page with step-by-step instructions for searching, filtering, the recipe popup, and saved recipes.
 
 ## System Workflow
 1. **Search & Filter**: User inputs an ingredient/cuisine or applies a filter in the UI.
 2. **Fetch Data**: The frontend requests matching recipe data from TheMealDB API.
 3. **Render Results**: Results populate dynamically in a thumbnail grid display.
-4. **Inspect Recipe**: Clicking a meal card displays a popup modal with ingredients and instructions.
+4. **Inspect Recipe**: Clicking a recipe card displays a popup window with ingredients and instructions.
 5. **Bookmark Dish**: Clicking "Save" sends an insertion request to store the recipe in the SQL database.
 6. **View Collection**: The saved recipes sidebar issues a fetch request to display stored favorites.
 
 ## Tech Stack & Architecture
 - **Frontend**: Standard HTML, CSS, and Pure JavaScript
-- **Database**: SQL Relational Database for storing and retrieving bookmarked user recipes
+- **Database**: SQL Relational Database (via Supabase) for storing and retrieving bookmarked user recipes
 - **External API**: [TheMealDB API](https://www.themealdb.com/) for searching recipes by ingredient, category, or area/cuisine (requires zero authentication)
 
+## Project Files
+| File | Purpose |
+|---|---|
+| `webpage.html` | Page structure and the Finder, About, and Help views |
+| `styles.css` | Layout and styling |
+| `webapp.js` | Search, filters, popup, routing, and saved-recipe logic |
+| `localsave.sql` | SQL script that creates the `recipes` and `saved_recipes` tables and their access policies |
+| `config.js` | Your Supabase project URL and publishable key (blank by default) |
+
 ## Database Setup
-The app stores saved recipes in a Postgres database hosted on [Supabase](https://supabase.com) (free tier).
+The app stores saved recipes in a database hosted on [Supabase](https://supabase.com).
  
 1. Create a Supabase project. It comes with one database, so you only need to create tables, not a new database.
 2. Open **SQL Editor**, paste the contents of `localsave.sql`, and click **Run**.
 3. Open **Table Editor** and confirm that `recipes` and `saved_recipes` appear.
-4. Go to **Project Settings > API**, copy the **Project URL** and your **publishable key** (it starts with `sb_publishable_`), and paste them into `config.js`:
+4. Copy the **Project URL** and your **publishable key** (it starts with `sb_publishable_`), and paste them into `config.js`:
 ```js
 window.SUPABASE_CONFIG = { url: "https://YOUR-PROJECT.supabase.co", key: "sb_publishable_YOUR-KEY" };
 ```
