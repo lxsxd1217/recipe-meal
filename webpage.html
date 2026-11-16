@@ -1,8 +1,17 @@
-<html>
+<!-- there will uses of ARIA attributes -> aria-label, aria-expanded, aria-live, aria-controls, aria-labelledby -->
+<!-- tell web brower document is written in HTML5 -->
+<!DOCTYPE html>
+<!-- declare the primary language of the webpage as English -->
+<html lang="en">
     <head>
+        <!-- set character encoding for the document to UTF-8 -->
+        <meta charset="utf-8">
+        <!-- control how the webpage scales on mobile devices and tablets -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Recipe Finder</title>
-        <!-- link to styles file -->
+        <!-- get font from google font api -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
+        <!-- link to styles file -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Figtree:wght@400;500;600&display=swap">
         <link rel="stylesheet" href="styles.css">
     </head>
@@ -10,6 +19,7 @@
         <div class="layout">
             <main class="panel">
                 <header class="phead">
+                    <!-- href="#/" for single page application (does not auto reload page) -->
                     <a class="brand" href="#/">Recipe Finder</a>
                     <nav aria-label="Main">
                         <a href="#/about" data-nav="about">About Us</a>
@@ -106,8 +116,8 @@
                             </div>
                             <div>
                                 <p class="info" style="text-align: left;">Anna Lin</p>
-                                <p class="info" style="text-align: left;"> </p>
-                                <p class="info" style="text-align: left;">University of Maryland</p>
+                                <p class="info" style="text-align: left;">College of Information, University of Maryland</p>
+                                <p class="info" style="text-align: left;">Email: alin1217@terpmail.umd.edu</p>
                             </div>
                         </div>
                     </section>
@@ -127,12 +137,12 @@
                             <article>
                                 <span class="n">3</span>
                                 <h2>&#x1F4D6; Recipe popup</h2>
-                                <p>Select a card to see its instructions and ingredients. Select the × in the top-right corner to close it.</p>
+                                <p>Select a card to see its instructions and ingredients. Select the &times; in the top-right corner to close it.</p>
                             </article>
                             <article>
                                 <span class="n">4</span>
                                 <h2>&#x2B50; Saved recipes</h2>
-                                <p>Choose Save in the popup. Your saved list is in the sidebar. On small screens, select Saved to open it and × to close it.</p>
+                                <p>Choose Save in the popup. Your saved list is in the sidebar. On small screens, select Saved to open it and &times; to close it.</p>
                             </article>
                         </div>
                     </section>
@@ -141,16 +151,17 @@
             <aside id="saved" class="panel" aria-label="Saved recipes">
                 <header class="phead">
                     <h2>Saved recipes</h2>
-                    <button id="savedClose" class="x" type="button" aria-label="Close saved recipes">x</button>
-                    <div class="pbody">
+                    <button id="savedClose" class="x" type="button" aria-label="Close saved recipes">&times;</button>
+                </header>
+                <div class="pbody">
                         <ol id="savedList"></ol>
                         <p id="savedEmpty">Nothing saved yet. Open a recipe and choose Save.</p>
                         <p id="storeNote" class="note"></p>
                     </div>
-                </header>
             </aside>
         </div>
         <!-- interactive pop window of the recipe -->
+        <!-- aria-labelledby for accessibility (allow screen reader to read the text with the id) -->
         <dialog id="modal" aria-labelledby="mTitle"></dialog>
         <!-- link to config file -->
          <script src="config.js"></script>
